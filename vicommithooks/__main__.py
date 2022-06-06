@@ -1,4 +1,5 @@
 import argparse
+import os
 from pylabview_helpers.vi import get_vi
 from vicommithooks.attributes import is_vi_source_only
 from vicommithooks.version import get_vi_version, LVVersion
@@ -9,7 +10,7 @@ def run_vi_checks(
 ):
     files_to_check = []
     if recursive:
-        for currentpath, folders, files in os.walk(root_dir):
+        for currentpath, folders, files in os.walk(file_path):
             for file in files:
                 filename, file_extension = os.path.splitext(file)
                 if ".vi" == file_extension:

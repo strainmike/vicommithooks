@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "vicommithooks"
+version = "0.1"
+description = "Useful VI assertions that can be used to prevent bad project commits"
+authors = ["strainmike",]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7.0"
+pylabview-helpers = "^0.1.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+
+[tool.poetry.scripts]
+vicommithooks = "vicommithooks.__main__:main"

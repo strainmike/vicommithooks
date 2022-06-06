@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vicommithooks"
-version = "0.1.1"
+version = "0.1.2"
 description = "Useful VI assertions that can be used to prevent bad project commits"
 authors = ["strainmike",]
 license = "MIT"

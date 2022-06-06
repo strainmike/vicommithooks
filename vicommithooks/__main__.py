@@ -13,7 +13,7 @@ def run_vi_checks(
         for currentpath, folders, files in os.walk(file_path):
             for file in files:
                 filename, file_extension = os.path.splitext(file)
-                if ".vi" == file_extension:
+                if ".vi" == file_extension or ".ctl" == file_extension:
                     path = os.path.join(currentpath, file)
                     files_to_check.append(path)
     else:

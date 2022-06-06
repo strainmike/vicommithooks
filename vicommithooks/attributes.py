@@ -24,7 +24,7 @@ def flags_to_dict(EnumClass, value, skip_mask=0):
 def is_vi_source_only(vi):
     lvsr = vi.get("LVSR")
     execution2_flags = flags_to_dict(VI_FLAGS2, lvsr.sections[0].viFlags2)
-    return execution2_flags["SourceOnly"] == 1
+    return int(execution2_flags["SourceOnly"]) == 1
 
 
 def is_vi_source_only_from_path(path):

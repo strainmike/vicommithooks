@@ -6,7 +6,7 @@ from vicommithooks.version import get_vi_version, LVVersion
 
 
 def run_vi_checks(
-    file_path, recursive, min_version, max_version, not_prerelease, assert_source_only
+    file_path, recursive, min_version, max_version, not_prerelease, assert_source_only, verbose
 ):
     files_to_check = []
     if recursive:
@@ -34,8 +34,11 @@ def run_vi_checks(
             )
         if not_prerelease and version.is_prerelease:
             raise RuntimeError(f"{file} is saved with a prerelease version of LabVIEW.")
-        if assert_source_only and not is_vi_source_only(vi):
+        source_only = is_vi_source_only(vi)
+        if assert_source_only and not source_only:
             raise RuntimeError(f"{file} has not been set as source only.")
+        if verbose:
+            print(f"Version:{version} - SourceOnly:{source_only} - {file}")
 
 
 def main():
@@ -74,6 +77,12 @@ def main():
         default=False,
         help="Asserts that the version of LabVIEW the VI was saved with is not a prerelease version",
     )
+    parser.add_argument(
+        "-v", "--verbose",
+        action="store_true",
+        default=False,
+        help="Prints each file it checks",
+    )
     options = parser.parse_args()
     run_vi_checks(
         options.file,
@@ -82,6 +91,7 @@ def main():
         options.max_version,
         options.not_prerelease,
         options.source_only,
+        options.verbose
     )
 
 
